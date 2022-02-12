@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="notes">
+        <item>Что купить</item>
+        <item>Взять с собой</item>
+        <item>Рецепт</item>
+        <item>План на неделю</item>
+    </string-array>
+</resources>
