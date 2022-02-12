@@ -1,5 +1,6 @@
 package ru.geekbrains.fragment;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -38,13 +39,22 @@ public class Notes extends Fragment {
             tv.setText(note);
             linearLayout.addView(tv);
             final int position = i;
-            tv.setOnClickListener(view1 ->
-                    showDescription(position));
+            tv.setOnClickListener(view1 -> {
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                    showLandDescription(position);
+                } else
+                    showPortDescription(position);
+            });
         }
     }
 
-    private void showDescription(int index){
+    private void showPortDescription(int index){
         Note_description note_description = Note_description.newInstance(index);
         requireActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_notes, note_description).addToBackStack("").commit();
+    }
+
+    private void showLandDescription(int index){
+        Note_description note_description = Note_description.newInstance(index);
+        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_note_description, note_description).commit();
     }
 }

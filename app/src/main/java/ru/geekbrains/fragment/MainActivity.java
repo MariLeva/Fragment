@@ -2,6 +2,7 @@ package ru.geekbrains.fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
@@ -11,7 +12,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Notes notes = new Notes();
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_notes, notes).commit();
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_note_description, Note_description.newInstance(0)).commit();
+        } else
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_notes,new Notes()).commit();
     }
 }
