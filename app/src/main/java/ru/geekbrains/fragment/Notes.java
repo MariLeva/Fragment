@@ -36,7 +36,6 @@ public class Notes extends Fragment {
             String note = notes[i];
             TextView tv = new TextView(getContext());
             tv.setText(note);
-            tv.setTextSize(30);
             linearLayout.addView(tv);
             final int position = i;
             tv.setOnClickListener(view1 ->
@@ -46,6 +45,6 @@ public class Notes extends Fragment {
 
     private void showDescription(int index){
         Note_description note_description = Note_description.newInstance(index);
-        requireActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_notes, note_description).commit();
+        requireActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_notes, note_description).addToBackStack("").commit();
     }
 }
