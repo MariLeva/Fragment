@@ -11,10 +11,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_note_description, Note_description.newInstance(0)).commit();
-        } else
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_notes,new Notes()).commit();
+        if (savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_notes, new Notes()).commit();
+        }
     }
 }

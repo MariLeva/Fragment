@@ -17,6 +17,14 @@ public class Note_description extends Fragment {
     static final String ARG_INDEX = "index";
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            requireActivity().getSupportFragmentManager().popBackStack();
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_note_description, container, false);

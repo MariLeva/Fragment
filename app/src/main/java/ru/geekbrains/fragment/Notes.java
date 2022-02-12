@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 
 public class Notes extends Fragment {
+    private static final String NOTES = "Notes";
+    private int notesIndex = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -27,7 +29,19 @@ public class Notes extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (savedInstanceState != null) {
+            notesIndex = savedInstanceState.getInt(NOTES, 0);
+        }
         initNotes(view);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            showLandDescription(notesIndex);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt(NOTES, notesIndex);
+        super.onSaveInstanceState(outState);
     }
 
     private void initNotes(View view) {
@@ -40,6 +54,7 @@ public class Notes extends Fragment {
             linearLayout.addView(tv);
             final int position = i;
             tv.setOnClickListener(view1 -> {
+                notesIndex = position;
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
                     showLandDescription(position);
                 } else
