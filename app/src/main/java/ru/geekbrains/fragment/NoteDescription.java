@@ -38,13 +38,11 @@ public class NoteDescription extends Fragment {
         Bundle arguments = getArguments();
         if (arguments != null) {
             NoteMain noteMain = (NoteMain) arguments.getParcelable(ARG_INDEX);
-            TextView tvNote = view.findViewById(R.id.description);
             TextView tvName = view.findViewById(R.id.nameNote);
             TextView tvDate = view.findViewById(R.id.date);
-            String[] note_description = getResources().getStringArray(R.array.note_description);
-            tvNote.setText(note_description[noteMain.getIndex()]);
             tvName.setText(noteMain.getNoteName());
             tvDate.setText(format.format(noteMain.getDate()));
+            getChildFragmentManager().beginTransaction().replace(R.id.description_fragment, NoteDescriptionChild.newInstance(noteMain)).commit();
         }
     }
 
