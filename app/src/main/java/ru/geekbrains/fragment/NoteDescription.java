@@ -1,6 +1,5 @@
 package ru.geekbrains.fragment;
 
-import android.content.res.TypedArray;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,9 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class Note_description extends Fragment {
+import java.text.SimpleDateFormat;
+
+public class NoteDescription extends Fragment {
 
     static final String ARG_INDEX = "index";
+    static final SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,17 +37,21 @@ public class Note_description extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Bundle arguments = getArguments();
         if (arguments != null) {
-            int index = arguments.getInt(ARG_INDEX);
+            NoteMain noteMain = (NoteMain) arguments.getParcelable(ARG_INDEX);
             TextView tvNote = view.findViewById(R.id.description);
+            TextView tvName = view.findViewById(R.id.nameNote);
+            TextView tvDate = view.findViewById(R.id.date);
             String[] note_description = getResources().getStringArray(R.array.note_description);
-            tvNote.setText(note_description[index]);
+            tvNote.setText(note_description[noteMain.getIndex()]);
+            tvName.setText(noteMain.getNoteName());
+            tvDate.setText(format.format(noteMain.getDate()));
         }
     }
 
-    public static Note_description newInstance(int index) {
-        Note_description fragment = new Note_description();
+    public static NoteDescription newInstance(NoteMain noteMain) {
+        NoteDescription fragment = new NoteDescription();
         Bundle args = new Bundle();
-        args.putInt(ARG_INDEX, index);
+        args.putParcelable(ARG_INDEX, noteMain);
         fragment.setArguments(args);
         return fragment;
     }

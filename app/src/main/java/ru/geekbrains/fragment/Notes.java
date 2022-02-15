@@ -6,8 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +16,7 @@ import android.widget.TextView;
 
 public class Notes extends Fragment {
     private static final String NOTES = "Notes";
-    private int notesIndex = 0;
+    private NoteMain noteMain = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,17 +28,17 @@ public class Notes extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (savedInstanceState != null) {
-            notesIndex = savedInstanceState.getInt(NOTES, 0);
+            noteMain = (NoteMain) savedInstanceState.getParcelable(NOTES);
         }
         initNotes(view);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-            showLandDescription(notesIndex);
+            showLandDescription(noteMain);
         }
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putInt(NOTES, notesIndex);
+        outState.putParcelable(NOTES, noteMain);
         super.onSaveInstanceState(outState);
     }
 
@@ -54,22 +52,22 @@ public class Notes extends Fragment {
             linearLayout.addView(tv);
             final int position = i;
             tv.setOnClickListener(view1 -> {
-                notesIndex = position;
+                noteMain = new NoteMain(position,note);
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-                    showLandDescription(position);
+                    showLandDescription(noteMain);
                 } else
-                    showPortDescription(position);
+                    showPortDescription(noteMain);
             });
         }
     }
 
-    private void showPortDescription(int index){
-        Note_description note_description = Note_description.newInstance(index);
+    private void showPortDescription(NoteMain noteMain){
+        NoteDescription note_description = NoteDescription.newInstance(noteMain);
         requireActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_notes, note_description).addToBackStack("").commit();
     }
 
-    private void showLandDescription(int index){
-        Note_description note_description = Note_description.newInstance(index);
+    private void showLandDescription(NoteMain noteMain){
+        NoteDescription note_description = NoteDescription.newInstance(noteMain);
         requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_note_description, note_description).commit();
     }
 }

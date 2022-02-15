@@ -7,7 +7,20 @@
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
-    tools:context=".Note_description">
+    tools:context=".NoteDescription">
+
+    <TextView
+        android:id="@+id/nameNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
+        android:textSize="@dimen/text_date" />
 
     <TextView
         android:id="@+id/description"
