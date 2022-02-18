@@ -33,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
             case R.id.toolbar_about:
-                getSupportFragmentManager().beginTransaction().addToBackStack("").add(R.id.fragment_notes, new AboutFragment()).commit();
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                    getSupportFragmentManager().beginTransaction().addToBackStack("").add(R.id.fragment_note_description, new AboutFragment()).commit();
+                } else
+                    getSupportFragmentManager().beginTransaction().addToBackStack("").add(R.id.fragment_notes, new AboutFragment()).commit();
                 return true;
             case R.id.toolbar_exit:
                 finish();
