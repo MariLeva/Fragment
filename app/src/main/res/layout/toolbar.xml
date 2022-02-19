@@ -8,9 +8,7 @@
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/black"
-        app:subtitleTextColor="@color/grey"
         app:title="@string/app_name"
-        app:titleTextColor="@color/grey" />
+        app:titleTextColor="@color/grey"/>
 </com.google.android.material.appbar.AppBarLayout>
 
