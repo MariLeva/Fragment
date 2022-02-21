@@ -7,7 +7,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().addToBackStack("").add(R.id.fragment_notes, new AboutFragment()).commit();
                 return true;
             case R.id.toolbar_exit:
-                new DialogFragment().show(getSupportFragmentManager(),DialogFragment.TAG);
+                new DialogFragmentExit().show(getSupportFragmentManager(), DialogFragmentExit.TAG);
                 return true;
         }
         return super.onOptionsItemSelected(item);
