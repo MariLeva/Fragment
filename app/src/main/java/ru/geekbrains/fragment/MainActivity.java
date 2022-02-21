@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     getSupportFragmentManager().beginTransaction().addToBackStack("").add(R.id.fragment_notes, new AboutFragment()).commit();
                 return true;
             case R.id.toolbar_exit:
-                finish();
+                new DialogFragment().show(getSupportFragmentManager(),DialogFragment.TAG);
                 return true;
         }
         return super.onOptionsItemSelected(item);
