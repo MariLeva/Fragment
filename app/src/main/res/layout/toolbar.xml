@@ -2,13 +2,13 @@
 <com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/beige">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        app:title="@string/app_name"
-        app:titleTextColor="@color/grey"/>
+        app:title="@string/app_name"/>
 </com.google.android.material.appbar.AppBarLayout>
 

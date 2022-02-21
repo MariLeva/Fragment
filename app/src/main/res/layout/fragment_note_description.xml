@@ -12,16 +12,14 @@
     <TextView
         android:id="@+id/nameNote"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/grey"/>
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="cursive"
-        android:textSize="@dimen/text_date"
-        android:textColor="@color/grey"/>
+        android:textSize="@dimen/text_date"/>
 
     <FrameLayout
         android:id="@+id/description_fragment"
