@@ -8,4 +8,5 @@
     <string name="tb_add">add</string>
     <string name="popup_clean">clean</string>
     <string name="popup_edit">edit</string>
+    <string name="ok">Ok</string>
 </resources>
